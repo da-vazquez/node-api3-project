@@ -14,7 +14,7 @@ function logger(format) {
     console.log(`${req.ip} made a ${req.method} request to ${req.url} at ${time}`)
         break
       default:
-        return next("Error: Need a logger format")
+        return next(`Error: ${process.env.LOGGER_ERROR}`)
     }
   next()
 }
@@ -29,7 +29,7 @@ function validateUserId() {
           req.user = user
           next()
       } else {
-        res.status(404).json({message: "user not found"})
+        res.status(404).json({message: process.env.USER_ID_ERROR})
       }
     })
     .catch((error) => {
@@ -42,7 +42,7 @@ function validateUser() {
   // DO YOUR MAGIC
   return (req, res, next) => {
     if (!req.body.name) {
-      return res.status(400).json({message: "missing required name field"})
+      return res.status(400).json({message: process.env.VALIDATE_USER_ERROR})
     }
       next()
   }
@@ -52,7 +52,7 @@ function validatePost() {
   // DO YOUR MAGIC
   return (req, res, next) => {
     if (!req.body.text) {
-      return res.status(400).json({message: "missing required text field"})
+      return res.status(400).json({message: process.env.VALIDATE_POST_ERROR})
     }
       next()
   }

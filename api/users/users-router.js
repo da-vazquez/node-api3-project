@@ -9,15 +9,13 @@ const {validateUserId, validateUser, validatePost} = require("../middleware/midd
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
   // RETURN AN ARRAY WITH ALL THE USERS
   users.get()
     .then(success => {
       res.json(success)
     })
-    .catch(() => {
-      res.status(500).json({message: "error retrieving users"})
-    })
+    .catch(next)
 });
 
 router.get('/:id', validateUserId(), (req, res) => {
@@ -53,7 +51,7 @@ router.delete('/:id', validateUserId(), (req, res, next) => {
   // this needs a middleware to verify user id
   users.remove(req.params.id)
     .then(() => {
-      res.status(200).json({message: "The user has been deleted!"})
+      res.status(200).json({message: process.env.DELETED_SUCCESS})
     })
     .catch(next)
 });
