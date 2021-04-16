@@ -5,11 +5,12 @@
         "start": "node index.js",
         "server": "nodemon --require dotenv/config index.js",
         "resetdb": "knex migrate:rollback && knex migrate:latest && knex seed:run",
-        "dev": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test --env=jsdom",
-        "eject": "react-scripts eject",
-        "heroku-postbuild": "npm run build"
+        "watch": "nodemon --require dotenv/config index.js",
+		"migrate": "knex migrate:latest",
+        "rollback": "knex migrate:rollback",
+        "seed": "knex seed:run",
+        "test": "cross-env NODE_ENV=testing jest --watchAll --verbose --runInBand",
+        "deploy": "git push heroku main"
     },
     "engines": {
         "node": "14.15.4",
