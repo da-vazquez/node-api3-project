@@ -4,13 +4,8 @@
     "scripts": {
         "start": "node index.js",
         "server": "nodemon --require dotenv/config index.js",
-        "resetdb": "knex migrate:rollback && knex migrate:latest && knex seed:run",
-        "watch": "nodemon --require dotenv/config index.js",
-		"migrate": "knex migrate:latest",
-        "rollback": "knex migrate:rollback",
-        "seed": "knex seed:run",
-        "test": "cross-env NODE_ENV=testing jest --watchAll --verbose --runInBand",
-        "deploy": "git push heroku main"
+        "build": "node index.js"
+      
     },
     "engines": {
         "node": "14.15.4"
