@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "scripts": {
         "start": "node index.js",
-        "watch": "nodemon --require dotenv/config index.js",
+        "server": "nodemon --require dotenv/config index.js",
         "test": "cross-env NODE_ENV=testing jest --watch --verbose --runInBand --silent",
         "resetdb": "knex migrate:rollback && knex migrate:latest && knex seed:run"
     },
